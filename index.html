@@ -1,0 +1,246 @@
+ <!DOCTYPE html>
+<html>
+<head>
+	<title>calulator</title>
+	<style>
+		
+		.btn{
+			height: 55px;
+			width: 55px;
+			background-color: black;
+			color: white;
+			border-radius: 10px;
+			box-shadow: 2px 2px 5px 5px white;
+			border:none;
+		}
+		.btn1{
+			height: 55px;
+			width: 55px;
+			background-color: red;
+			color: white;
+			border-radius: 10px;
+			box-shadow: 2px 2px 5px 5px white;
+			border:none;
+		}
+		.btn2{
+
+			height: 55px;
+			width: 55px;
+			background-color: white;
+			color: black;
+			border-radius: 10px;
+			box-shadow: 2px 2px 2px 2px white;
+			border:none;
+		}
+		.center{
+			left: 50%;
+			top: 50%;
+			transform:translate(-50% , -50%);
+			position: absolute;
+			box-shadow: 5px 5px 10px 10px white;
+			border-radius: 10px;
+
+		}
+		
+		body{
+			background-color: gray;
+		}
+	</style>
+</head>
+<body>
+	<div class="center">
+	
+		
+		<table style="padding: 15px;">
+			<tr>
+				 <td colspan="3" ><input style="width: 200px;height: 40px;border-radius: 10px;
+border:none;" type="text" id="result"/></td>
+				  <td><input class="btn" type="button" value="CC" onclick="back()"/> </td> 
+			</tr>
+			
+			<tr>
+				<td><input class="btn" type="button" name="curly1" value="(" onclick="dis('')"></td>
+				<td><input class="btn" type="button" name="curly2" value=")" onclick="dis('')"></td>
+				<td><input class="btn" type="button" name="per" value="%" onclick="discalc('%')"></td>
+				<td><input class="btn1" type="button" name="ac" value="AC" onclick="clr()"></td>
+			</tr>
+			<tr>
+				<td><input class="btn2" type="button" name="seven" value="7" onclick="disnum('7')"></td>
+				<td><input class="btn2" type="button" name="eight" value="8" onclick="disnum('8')"></td>
+				<td><input class="btn2" type="button" name="nine" value="9" onclick="disnum('9')"></td>
+				<td><input class="btn" type="button" name="divide" value="/" onclick="discalc('/')"></td>
+ 			</tr>
+			<tr>
+				<td><input class="btn2" type="button" name="four" value="4" onclick="disnum('4')"></td>
+				<td><input class="btn2" type="button" name="five" value="5" onclick="disnum('5')"></td>
+				<td><input class="btn2" type="button" name="six" value="6" onclick="disnum('6')"></td>
+				<td><input class="btn" type="button" name="multi" value="x" onclick="discalc('*')"></td>
+			</tr>
+			<tr>
+				<td><input class="btn2" type="button" name="one" value="1" onclick="disnum('1')"></td>
+				<td><input class="btn2" type="button" name="two" value="2" onclick="disnum('2')"></td>
+				<td><input class="btn2" type="button" name="three" value="3" onclick="disnum('3')"></td>
+				<td><input class="btn" type="button" name="subtraction" value="-" onclick="discalc('-')"></td>
+			</tr>
+			<tr>
+				<td><input class="btn2" type="button" name="zero" value="0" onclick="disnum('0')"></td>
+				<td><input class="btn2" type="button" name="dot" value="." onclick="disnum('.')"></td>
+				<td><input class="btn2" type="button" name="equal" value="=" onclick="discalc('=')"></td>
+				<td><input class="btn" type="button" name="plus" value="+" onclick="discalc('+')"></td>
+			</tr>
+		</table>
+	
+</div>
+
+<script type="text/javascript">
+		
+		var previousValue = 0;
+		var displayValue = "";
+		var opt = "+";
+		var result;
+		var displayValue1="";
+		function myCall(displayValue,opt){
+			switch(opt){
+				case '+':
+				result  = parseFloat(parseFloat(previousValue) + parseFloat(displayValue));
+				//  displayValue1 = result + operator ;
+				// document.getElementById("result").value = displayValue1;
+				break;
+				case '-':
+				result  = parseFloat(parseFloat(previousValue) - parseFloat(displayValue));
+				// displayValue1 = result + operator ;
+				// document.getElementById("result").value = displayValue1;
+				break;
+				case '*':
+				result  = parseFloat(parseFloat(previousValue) * parseFloat(displayValue));
+				// displayValue1 = result + operator ;
+				// document.getElementById("result").value = displayValue1;
+				break;
+				case '/':
+				result  = parseFloat(parseFloat(previousValue) / parseFloat(displayValue));
+				// displayValue1 = result + operator ;
+				// document.getElementById("result").value = displayValue1;
+				break;
+				case '%':
+				result  = parseFloat(parseFloat(previousValue) % parseFloat(displayValue));
+				//  displayValue1 = result + operator ;
+				// document.getElementById("result").value = displayValue1;
+				break;
+				// case '=':
+				
+				// document.getElementById("result").value = result; 
+				
+				// break;
+				default:
+				break;
+			}
+		}
+
+		function disnum(operand){
+			if (displayValue1 == result) {
+			// 	// displayValue1 = "";
+				clr();
+			}
+			 displayValue += operand;
+			document.getElementById('result').value+= operand;
+			console.log(displayValue);
+			// document.getElementById('result').value = displayValue1 + displayValue;
+				
+		}
+
+		function discalc(operator){
+			// debugger;
+		// console.log(next);
+		console.log(displayValue);
+			
+			if(operator == '='){
+				myCall(displayValue,opt);
+				displayValue1 = result  ;
+				document.getElementById("result").value = displayValue1;
+				
+			// 	switch(opt){
+			// 	case '+':
+			// 	result  = parseFloat(parseFloat(previousValue) + parseFloat(displayValue));
+			// 	 displayValue1 = result  ;
+			// 	document.getElementById("result").value = displayValue1;
+			// 	break;
+			// 	case '-':
+			// 	result  = parseFloat(parseFloat(previousValue) - parseFloat(displayValue));
+			// 	displayValue1 = result  ;
+			// 	document.getElementById("result").value = displayValue1;
+			// 	break;
+			// 	case '*':
+			// 	result  = parseFloat(parseFloat(previousValue) * parseFloat(displayValue));
+			// 	displayValue1 = result  ;
+			// 	document.getElementById("result").value = displayValue1;
+			// 	break;
+			// 	case '/':
+			// 	result  = parseFloat(parseFloat(previousValue) / parseFloat(displayValue));
+			// 	displayValue1 = result ;
+			// 	document.getElementById("result").value = displayValue1;
+			// 	break;
+			// 	case '%':
+			// 	result  = parseFloat(parseFloat(previousValue) % parseFloat(displayValue));
+			// 	 displayValue1 = result ;
+			// 	document.getElementById("result").value = displayValue1;
+			// 	break;
+			// 	// case '=':
+				
+			// 	// document.getElementById("result").value = result; 
+				
+			// 	// break;
+			// 	default:
+			// 	break;
+			// }
+
+			}
+
+
+			else{
+				myCall(displayValue,opt);
+			 displayValue1 = result + operator ;
+				document.getElementById("result").value = displayValue1;
+			}
+
+			console.log(displayValue1);
+			console.log(displayValue);
+			displayValue = '';
+			previousValue = result;
+			opt = operator;
+		}
+
+
+	// //function for display the value
+		// function dis(va){
+		// 	document.getElementById("result").value+=va
+		// }
+		// //Function for clear
+		function clr(){
+			
+			document.getElementById("result").value="";
+			previousValue = 0;
+			 displayValue = "";
+			opt = "+";
+		}
+		//Function for backspace
+		function back(){
+
+			displayValue="";
+			as=previousValue+opt;
+			document.getElementById('result').value=as;
+
+		 // let x = document.getElementById("result").value;		 
+		 // document.getElementById("result").value = x.substring(0,x.length-1);
+		}
+		// //Function for evaluation
+		// function solve(){
+		// 	let x = document.getElementById("result").value
+		// 	let y = eval(x)
+		// 	document.getElementById("result").value = y
+		// }
+	</script>
+</body>
+</html>
+
+
+ 
